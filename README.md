@@ -13,7 +13,9 @@ Stan is a fast developing probabilistic programming language - https://mc-stan.o
 
 The project is mostly to allow me to go deeper in my modeling skills with Stan, but it might have some more general usefulness, so here the book with my journey.
 
-Note that there is an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated, but I've abundantly relied on it to build up my code.
+## Acknowledgments
+This project is largely inspired by Solomon Kurz's generous recoding of statistical books in brms and tidyverse: https://solomonkurz.netlify.app/bookdown/.
+My Stan code often relies on  an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated and keeps closer to the original winBUG code, but I've abundantly relied on it to get unstuck.
 
 This repository contains the code and text behind the [Recoding *Bayesian Cognitive Modeling*](FUTURE LINK) book. It was all stitched together using Yihui Xie's [**bookdown** package](https://github.com/rstudio/bookdown). Enjoy.
 

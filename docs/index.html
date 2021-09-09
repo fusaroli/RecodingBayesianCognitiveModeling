@@ -73,9 +73,21 @@
 <li><a href="./">CognitiveModeling</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Down the rabbit-hole</a></li>
-<li class="chapter" data-level="2" data-path="the-pool-of-tears.html"><a href="the-pool-of-tears.html"><i class="fa fa-check"></i><b>2</b> The pool of tears</a></li>
-<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this"><i class="fa fa-check"></i>Why this?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-assumptions-about-you"><i class="fa fa-check"></i>My assumptions about you</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-and-understand-this-project"><i class="fa fa-check"></i>How to use and understand this project</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#times-change-and-so-do-we"><i class="fa fa-check"></i>Times change and so do we</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i>0.1.0.</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#whats-next"><i class="fa fa-check"></i>What’s next?</a></li>
+</ul></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i><b>0.1</b> Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license-and-citation"><i class="fa fa-check"></i>License and citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="the-pool-of-tears.html"><a href="the-pool-of-tears.html"><i class="fa fa-check"></i><b>1</b> The pool of tears</a></li>
+<li class="chapter" data-level="2" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>2</b> A caucus-race and a long tale</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -100,9 +112,45 @@
 <p class="author"><em>Riccardo Fusaroli</em></p>
 <p class="date"><em>2021-09-09</em></p>
 </div>
-<div id="down-the-rabbit-hole" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Down the rabbit-hole</h1>
+<div id="welcome" class="section level1 unnumbered">
+<h1>Welcome</h1>
+<p>Michael Lee and EJ Wagenmakers’ <em>Bayesian Cognitive Modeling</em> text, (<a href="https://bayesmodels.com/" class="uri">https://bayesmodels.com/</a>), is a common entry to computational cognitive modeling, also thanks to the summer school Lee and Wagenmakers regularly hold in Amsterdam. The book presents code in WinBUG and JAGS. This project is an effort to contextualize the models presented in the book in a more up-to-date Bayesian Workflow relying on Stan. But to be clear, this project is not meant to stand alone. It’s a supplement to the textbook.</p>
+<p>The source code of the project is available <a href="https://github.com/fusaroli/RecodingBayesianCognitiveModeling">here</a>. This project is powered by the great <a href="https://twitter.com/xieyihui">Yihui Xie</a>’s <a href="https://bookdown.org"><strong>bookdown</strong> package</a> <span class="citation">[@R-bookdown; @xieBookdownAuthoringBooks2016]</span>, which makes it easy to turn <strong>R</strong> markdown files into HTML, PDF, and EPUB. You might also check out Xie, Allaire, and Grolemund’s <span class="citation">[-@xieMarkdownDefinitiveGuide2020]</span> <a href="https://bookdown.org/yihui/rmarkdown/"><em>R markdown: The definitive guide</em></a>.</p>
+<div id="why-this" class="section level2 unnumbered">
+<h2>Why this?</h2>
+<p>i want to get better at cognitive modeling and Stan is my drug of choice.</p>
+</div>
+<div id="my-assumptions-about-you" class="section level2 unnumbered">
+<h2>My assumptions about you</h2>
+<p>TBA</p>
+</div>
+<div id="how-to-use-and-understand-this-project" class="section level2 unnumbered">
+<h2>How to use and understand this project</h2>
+<p>This project is not meant to stand alone. It’s a supplement to the original book. I roughl follow the structure of the text, translating the models into <strong>Stan</strong>, <strong>cmdstanr</strong> and <strong>brms</strong> code. However, I am not bound to the exact sequence of steps in each chapter.</p>
+</div>
+<div id="times-change-and-so-do-we" class="section level2 unnumbered">
+<h2>Times change and so do we</h2>
+<p>For a brief rundown of the version history, we have:</p>
+<div id="section" class="section level3 unnumbered">
+<h3>0.1.0.</h3>
+<p>The current incomplete version.</p>
+</div>
+<div id="whats-next" class="section level3 unnumbered">
+<h3>What’s next?</h3>
+<p>I hope to provide a full annotated recoding of the book by the end of Fall ’21. We’ll see. In the meantime, feel free to make suggestions or report typos and coding goofs at <a href="https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues">https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues</a>.</p>
+</div>
+</div>
+<div id="acknowledgments" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Acknowledgments</h2>
+<p>This project is largely inspired by Solomon Kurz’s generous recoding of statistical books in brms and tidyverse: <a href="https://solomonkurz.netlify.app/bookdown/" class="uri">https://solomonkurz.netlify.app/bookdown/</a>.
+My Stan code often relies on an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated and keeps closer to the original winBUG code, but I’ve abundantly relied on it to get unstuck.</p>
+</div>
+<div id="license-and-citation" class="section level2 unnumbered">
+<h2>License and citation</h2>
+<p>This book is licensed under the Creative Commons Zero v1.0 Universal license. In short, you can use my work. Just make sure you give me the appropriate credit the same way you would for any other scholarly resource. Here’s the citation information:</p>
+<p>TBA</p>
 
+</div>
 </div>
             </section>
 
@@ -141,7 +189,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/master/index.Rmd",
+"link": "https://github.com/fusaroli/RecodingBayesianCognitiveModeling/edit/master/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -149,7 +197,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/master/index.Rmd",
+"link": "https://github.com/fusaroli/RecodingBayesianCognitiveModeling/blob/master/index.Rmd",
 "text": null
 },
 "download": null,

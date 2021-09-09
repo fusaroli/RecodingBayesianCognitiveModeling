@@ -5,5 +5,45 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# Welcome {-}
+
+Michael Lee and EJ Wagenmakers' *Bayesian Cognitive Modeling*  text, (https://bayesmodels.com/), is a common entry to computational cognitive modeling, also thanks to the summer school Lee and Wagenmakers regularly hold in Amsterdam. The book presents code in WinBUG and JAGS. This project is an effort to contextualize the models presented in the book in a more up-to-date Bayesian Workflow relying on Stan. But to be clear, this project is not meant to stand alone. It's a supplement to the textbook.
+
+The source code of the project is available [here](https://github.com/fusaroli/RecodingBayesianCognitiveModeling). This project is powered by the great [Yihui Xie](https://twitter.com/xieyihui)'s [**bookdown** package](https://bookdown.org) [@R-bookdown; @xieBookdownAuthoringBooks2016], which makes it easy to turn **R** markdown files into HTML, PDF, and EPUB. You might also check out Xie, Allaire, and Grolemund's [-@xieMarkdownDefinitiveGuide2020] [*R markdown: The definitive guide*](https://bookdown.org/yihui/rmarkdown/).
+
+## Why this? {-}
+
+i want to get better at cognitive modeling and Stan is my drug of choice. 
+
+## My assumptions about you {-}
+
+TBA
+
+## How to use and understand this project {-}
+
+This project is not meant to stand alone. It's a supplement to the original book. I roughl follow the structure of the text, translating the models into **Stan**, **cmdstanr** and **brms** code. However, I am not bound to the exact sequence of steps in each chapter.
+
+## Times change and so do we {-}
+
+For a brief rundown of the version history, we have:
+
+### 0.1.0. {-}
+
+The current incomplete version.
+
+### What's next? {-}
+
+I hope to provide a full annotated recoding of the book by the end of Fall '21. We'll see. In the meantime, feel free to make suggestions or report typos and coding goofs at [https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues](https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues).
+
+## Acknowledgments
+
+This project is largely inspired by Solomon Kurz's generous recoding of statistical books in brms and tidyverse: https://solomonkurz.netlify.app/bookdown/.
+My Stan code often relies on  an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated and keeps closer to the original winBUG code, but I've abundantly relied on it to get unstuck.
+
+## License and citation {-}
+
+This book is licensed under the Creative Commons Zero v1.0 Universal license. In short, you can use my work. Just make sure you give me the appropriate credit the same way you would for any other scholarly resource. Here's the citation information:
+
+TBA
+
 
