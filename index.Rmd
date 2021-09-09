@@ -14,6 +14,8 @@ The source code of the project is available [here](https://github.com/fusaroli/R
 ## Why this? {-}
 
 i want to get better at cognitive modeling and Stan is my drug of choice. 
+I will therefore recode each model directly in Stan, calling the model in R via cmdstanr.
+As a comparison, I'll also recode most models in BRMS to compare the automatically generated Stan code - and showcase how awesome BRMS is.
 
 ## My assumptions about you {-}
 
@@ -35,7 +37,7 @@ The current incomplete version.
 
 I hope to provide a full annotated recoding of the book by the end of Fall '21. We'll see. In the meantime, feel free to make suggestions or report typos and coding goofs at [https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues](https://github.com/fusaroli/RecodingBayesianCognitiveModeling/issues).
 
-## Acknowledgments
+## Acknowledgments {-}
 
 This project is largely inspired by Solomon Kurz's generous recoding of statistical books in brms and tidyverse: https://solomonkurz.netlify.app/bookdown/.
 My Stan code often relies on  an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated and keeps closer to the original winBUG code, but I've abundantly relied on it to get unstuck.
