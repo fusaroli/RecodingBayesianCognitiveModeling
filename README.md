@@ -1,61 +1,22 @@
-This is a template for creating an [HTML GitBook style](https://bookdown.org/yihui/bookdown/html.html#gitbook-style) **[bookdown](https://github.com/rstudio/bookdown)** book, [hosted on GitHub Pages](https://bookdown.org/yihui/bookdown/github.html). It is based on the one created with *File, New Project..., New Directory, Book Project using bookdown* in RStudio. It assumes you know how to use git/GitHub and R Markdown, and have some familiarity with the **bookdown** package. If you don't, the package author Yihue Xie's RStudio webinar *[Introduction to Bookdown (R Package)](https://www.youtube.com/watch?v=dVqVscgwSpw)* provides an excellent introduction. In addition, check out [*bookdown: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown), also by Yihui Xie, both for the content and the format--it is itself a **bookdown** book.
+# Recoding  of *Bayesian Cognitive Modeling* by Lee & Wagenmakers in Stan, cmdstanr and BRMS
 
+version 0.1.0
+Riccardo Fusaroli
 
-## ABSOLUTE ESSENTIALS
+2021-08-02
 
-*Follow these instructions and you will have a published bookdown book in less than five minutes. If you have any difficulties or have feedback of any kind, please file an issue.*
+Michael Lee and EJ Wagenmakers' *Bayesian Cognitive Modeling*  text, (https://bayesmodels.com/), is a common entry to computational cognitive modeling, also thanks to the summer school Lee and Wagenmakers regularly hold in Amsterdam. The book presents code in WinBUG and JAGS. This project is an effort to contextualize the models presented in the book in a more up-to-date Bayesian Workflow relying on Stan. 
 
-### Copy this template
+The Bayesian Workflow is developed in Michael Betancourt's work - e.g. https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html - as well as in this long paper - https://arxiv.org/abs/2011.01808 - by Andrew Gelman, Aki Vehtari, Daniel Simpson, Charles C. Margossian, Bob Carpenter, Yuling Yao, Lauren Kennedy, Jonah Gabry, Paul-Christian Bürkner, and Martin Modrák. Compared to the Bayesian Cognitive Modeling handbook, the Bayesian workflow insists on more extensive testing of the assumptions implied in the priors and likelihood used, on assessing predictions and whether the models can recover the parameters from simulated data.
 
-- [ ] 1. Click the green "Use this template" button above.  DO NOT FORK THE REPO.  Choose a descriptive name for your repo based on your content. (Unlike when you fork a repo, you get to choose the name. If you change your mind before you do any work, delete your new repo and start over.)
+Stan is a fast developing probabilistic programming language - https://mc-stan.org/ - with a variety of interfaces. Here I will focus on cmdstanr - https://mc-stan.org/cmdstanr/ - and separately Bürkner’s [**brms**](https://github.com/paul-buerkner/brms).
 
-### Set up GitHub Pages
+The project is mostly to allow me to go deeper in my modeling skills with Stan, but it might have some more general usefulness, so here the book with my journey.
 
-- [ ] 1. On the home page of your repo, click Settings. Scroll down to the GitHub pages section and change **Source** to **master branch /docs folder**.  Above the **Source** line, a bar will appear with your book's URL. The bar will initially be blue and indicate that your book is *ready* to be published and will change to green once it is published. Copy the URL. (Note that sometimes there is a delay until your book actually appears at that URL. If it doesn't appear after a few minutes, make a change and commit it to trigger a GitHub Pages build.)
+Note that there is an earlier Stan recoding of the book by Martin Smira. The code is a bit outdated, but I've abundantly relied on it to build up my code.
 
-- [ ] 2. Click the gear button near "About" on the home page of the repo and paste your book URL into the **Website** field that appears on the right.
+This repository contains the code and text behind the [Recoding *Bayesian Cognitive Modeling*](FUTURE LINK) book. It was all stitched together using Yihui Xie's [**bookdown** package](https://github.com/rstudio/bookdown). Enjoy.
 
-### Clone the repo
+-`bookdown::render_book("index.Rmd")`
 
-- [ ] 1. Clone your new repo with *File, New Project..., Version Control, Git* in RStudio.
-
-### Edit some key files
-
-- [ ] 1. In `index.Rmd`, change YOUR TITLE HERE to your title. 
-
-- [ ] 2. In `index.Rmd`, change YOUR NAME HERE to your name.
-
-- [ ] 3. In `_bookdown.yml`, change YOUR GITHUB USERNAME to your GitHub username in the two places it appears.
-
-- [ ] 4. In `_bookdown.yml`, change YOUR GITHUB REPO to your GitHub repo name in the two places it appears.
-
-(Note that 3. and 4. provide links to the `.Rmd` files of your project for editing and viewing. If you move your `.Rmd` files you will need to update these file paths. Once your book is rendered, test that the edit (pen) and view (eye) buttons work.)
-
-- [ ] 5. In `_output.yml`, change YOUR SHORT TITLE to a shortened version of your title. (Leave the "after:" line indicating that the book was published with bookdown as is.)
-
-### Render the book
-
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the [latest version](https://CRAN.R-project.org/package=bookdown).
-
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")`.
-
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
-
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
-
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:
-
-*This repo was initially generated from a bookdown template available here: https://github.com/jtr13/bookdown-template.*
-
-### Demo Video
-
-A demo video showing how to create a **bookdown book** following these instructions: http://bit.ly/fiveminutebookdown
-
-### Additional features
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
 
