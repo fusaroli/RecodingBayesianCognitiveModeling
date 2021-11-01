@@ -25,8 +25,8 @@ k <- rbinom(1, size = n, prob = theta)
 
 ## Create the data
 data <- list(
-  n,
-  k
+  n = n,
+  k = k
 )
 
 ```
