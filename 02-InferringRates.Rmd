@@ -35,31 +35,13 @@ data <- list(
 Second we want to define a basic rate inferring model. 
 A stan program is composed (in its minimal form) by 3 blocks: data, parameters and model.
 
-*data* identifies the variables that are passed to the model and defines their type (e.g. whether they are real or integer numbers) and whether they are bounded (e.g. cannot be below 0). Here it's easy, we have 2 variables that we are observing: the number of trials (n) and the number of success (k). Both are integers, we need to observe at least 1 trial, or there's no data (n>0) and there cannot be a negative number of successes (k>=0).
+**data** identifies the variables that are passed to the model and defines their type (e.g. whether they are real or integer numbers) and whether they are bounded (e.g. cannot be below 0). Here it's easy, we have 2 variables that we are observing: the number of trials (n) and the number of success (k). Both are integers, we need to observe at least 1 trial, or there's no data (n>0) and there cannot be a negative number of successes (k>=0).
 
-> data {
->  int<lower=1> n; // n of trials
->  int<lower=0> k; // n of successes
->}
+**parameters** identifies the parameters that need to be inferred thorugh the model. In this case, we only have one parameter: rate, which is bound between 0 (never successes) and 1 (always successes).
 
-*parameters* identifies the parameters that need to be inferred thorugh the model. In this case, we only have one parameter: rate, which is bound between 0 (never successes) and 1 (always successes).
-
-> parameters {
->  real<lower=0, upper=1> theta;
->}
-
-*model* includes two parts: the priors for each of the parameters and the likelihood formula(s).
+**model** includes two parts: the priors for each of the parameters and the likelihood formula(s).
 Here, again, we have the prior for our one parameter theta and the likelihood stating that k is
 generated according to a binomial distribution with a number of trial n and a rate theta.
-
-> model {
->  // The prior for theta is a uniform distribution between 0 and 1
->  theta ~ beta(1, 1);
->  // The model consists in a binomial distribution with a rate theta, 
->  // and a number of trials n generating k successes
->  k ~ binomial(n, theta);
->}
-
 
 ```{r}
 library(cmdstanr)
@@ -69,12 +51,12 @@ stan_file <- write_stan_file("
 
 // The input data is two integer numbers: n and k.
 data {
-  int<lower=1> n; 
-  int<lower=0> k;
+  int<lower=1> n; // n of trials (there has to be at least 1 to have observable data) 
+  int<lower=0> k;  // n of successes (lowest n is no successes)
 }
 
-// The parameters accepted by the model. Our model
-// accepts only theta, the rate, which is bound at 0 (no chances of success) and 1 (always success)
+// The parameters accepted by the model. Our model accepts only theta, the rate, 
+// which is bound at 0 (no chances of success) and 1 (always success)
 parameters {
   real<lower=0, upper=1> theta;
 }
@@ -95,6 +77,7 @@ model {
 Then we fit the model and assess the estimates
 
 ```{r}
+
 mod <- cmdstan_model(stan_file, cpp_options = list(stan_threads = TRUE), pedantic = TRUE)
 
 

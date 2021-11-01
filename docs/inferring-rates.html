@@ -197,31 +197,11 @@ But for now we follow the book.</p>
 <span id="cb1-12"><a href="inferring-rates.html#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Second we want to define a basic rate inferring model.
 A stan program is composed (in its minimal form) by 3 blocks: data, parameters and model.</p>
-<p><em>data</em> identifies the variables that are passed to the model and defines their type (e.g. whether they are real or integer numbers) and whether they are bounded (e.g. cannot be below 0). Here it’s easy, we have 2 variables that we are observing: the number of trials (n) and the number of success (k). Both are integers, we need to observe at least 1 trial, or there’s no data (n&gt;0) and there cannot be a negative number of successes (k&gt;=0).</p>
-<blockquote>
-<p>data {
-int&lt;lower=1&gt; n; // n of trials
-int&lt;lower=0&gt; k; // n of successes
-}</p>
-</blockquote>
-<p><em>parameters</em> identifies the parameters that need to be inferred thorugh the model. In this case, we only have one parameter: rate, which is bound between 0 (never successes) and 1 (always successes).</p>
-<blockquote>
-<p>parameters {
-real&lt;lower=0, upper=1&gt; theta;
-}</p>
-</blockquote>
-<p><em>model</em> includes two parts: the priors for each of the parameters and the likelihood formula(s).
+<p><strong>data</strong> identifies the variables that are passed to the model and defines their type (e.g. whether they are real or integer numbers) and whether they are bounded (e.g. cannot be below 0). Here it’s easy, we have 2 variables that we are observing: the number of trials (n) and the number of success (k). Both are integers, we need to observe at least 1 trial, or there’s no data (n&gt;0) and there cannot be a negative number of successes (k&gt;=0).</p>
+<p><strong>parameters</strong> identifies the parameters that need to be inferred thorugh the model. In this case, we only have one parameter: rate, which is bound between 0 (never successes) and 1 (always successes).</p>
+<p><strong>model</strong> includes two parts: the priors for each of the parameters and the likelihood formula(s).
 Here, again, we have the prior for our one parameter theta and the likelihood stating that k is
 generated according to a binomial distribution with a number of trial n and a rate theta.</p>
-<blockquote>
-<p>model {
-// The prior for theta is a uniform distribution between 0 and 1
-theta ~ beta(1, 1);
-// The model consists in a binomial distribution with a rate theta,
-// and a number of trials n generating k successes
-k ~ binomial(n, theta);
-}</p>
-</blockquote>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="inferring-rates.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
 <span id="cb2-2"><a href="inferring-rates.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="inferring-rates.html#cb2-3" aria-hidden="true" tabindex="-1"></a>stan_file <span class="ot">&lt;-</span> <span class="fu">write_stan_file</span>(<span class="st">&quot;</span></span>
@@ -229,12 +209,12 @@ k ~ binomial(n, theta);
 <span id="cb2-5"><a href="inferring-rates.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="inferring-rates.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">// The input data is two integer numbers: n and k.</span></span>
 <span id="cb2-7"><a href="inferring-rates.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
-<span id="cb2-8"><a href="inferring-rates.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=1&gt; n; </span></span>
-<span id="cb2-9"><a href="inferring-rates.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; k;</span></span>
+<span id="cb2-8"><a href="inferring-rates.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=1&gt; n; // n of trials (there has to be at least 1 to have observable data) </span></span>
+<span id="cb2-9"><a href="inferring-rates.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; k;  // n of successes (lowest n is no successes)</span></span>
 <span id="cb2-10"><a href="inferring-rates.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
 <span id="cb2-11"><a href="inferring-rates.html#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="inferring-rates.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">// The parameters accepted by the model. Our model</span></span>
-<span id="cb2-13"><a href="inferring-rates.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">// accepts only theta, the rate, which is bound at 0 (no chances of success) and 1 (always success)</span></span>
+<span id="cb2-12"><a href="inferring-rates.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">// The parameters accepted by the model. Our model accepts only theta, the rate, </span></span>
+<span id="cb2-13"><a href="inferring-rates.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">// which is bound at 0 (no chances of success) and 1 (always success)</span></span>
 <span id="cb2-14"><a href="inferring-rates.html#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
 <span id="cb2-15"><a href="inferring-rates.html#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0, upper=1&gt; theta;</span></span>
 <span id="cb2-16"><a href="inferring-rates.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
@@ -252,19 +232,132 @@ k ~ binomial(n, theta);
 <span id="cb2-28"><a href="inferring-rates.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Then we fit the model and assess the estimates</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="inferring-rates.html#cb3-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(stan_file, <span class="at">cpp_options =</span> <span class="fu">list</span>(<span class="at">stan_threads =</span> <span class="cn">TRUE</span>), <span class="at">pedantic =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Model executable is up to date!</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="inferring-rates.html#cb5-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
-<span id="cb5-2"><a href="inferring-rates.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb5-3"><a href="inferring-rates.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
-<span id="cb5-4"><a href="inferring-rates.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb5-5"><a href="inferring-rates.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parallel_chains =</span> <span class="dv">2</span>,</span>
-<span id="cb5-6"><a href="inferring-rates.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">threads_per_chain =</span> <span class="dv">2</span>,</span>
-<span id="cb5-7"><a href="inferring-rates.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_warmup =</span> <span class="dv">2000</span>,</span>
-<span id="cb5-8"><a href="inferring-rates.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_sampling =</span> <span class="dv">2000</span>,</span>
-<span id="cb5-9"><a href="inferring-rates.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">500</span>,</span>
-<span id="cb5-10"><a href="inferring-rates.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_treedepth =</span> <span class="dv">20</span>,</span>
-<span id="cb5-11"><a href="inferring-rates.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
-<span id="cb5-12"><a href="inferring-rates.html#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Compiling Stan program...</code></pre>
+<pre><code>## 
+-
+
+\
+
+|
+
+/
+
+-
+
+\</code></pre>
+<pre><code>## Warning: The parameter theta has 2 priors.</code></pre>
+<pre><code>## 
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+ </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="inferring-rates.html#cb8-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
+<span id="cb8-2"><a href="inferring-rates.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
+<span id="cb8-3"><a href="inferring-rates.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb8-4"><a href="inferring-rates.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb8-5"><a href="inferring-rates.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parallel_chains =</span> <span class="dv">2</span>,</span>
+<span id="cb8-6"><a href="inferring-rates.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">threads_per_chain =</span> <span class="dv">2</span>,</span>
+<span id="cb8-7"><a href="inferring-rates.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_warmup =</span> <span class="dv">2000</span>,</span>
+<span id="cb8-8"><a href="inferring-rates.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_sampling =</span> <span class="dv">2000</span>,</span>
+<span id="cb8-9"><a href="inferring-rates.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">500</span>,</span>
+<span id="cb8-10"><a href="inferring-rates.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_treedepth =</span> <span class="dv">20</span>,</span>
+<span id="cb8-11"><a href="inferring-rates.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb8-12"><a href="inferring-rates.html#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Running MCMC with 2 parallel chains, with 2 thread(s) per chain...
 ## 
 ## Chain 1 Iteration:    1 / 4000 [  0%]  (Warmup) 
@@ -293,7 +386,7 @@ k ~ binomial(n, theta);
 ## Both chains finished successfully.
 ## Mean chain execution time: 0.0 seconds.
 ## Total execution time: 0.2 seconds.</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="inferring-rates.html#cb7-1" aria-hidden="true" tabindex="-1"></a>samples</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="inferring-rates.html#cb10-1" aria-hidden="true" tabindex="-1"></a>samples</span></code></pre></div>
 <pre><code>##  variable  mean median   sd  mad     q5   q95 rhat ess_bulk ess_tail
 ##     lp__  -8.66  -8.37 0.74 0.30 -10.25 -8.15 1.00     1172     1084
 ##     theta  0.59   0.60 0.13 0.14   0.37  0.81 1.00     1148      967</code></pre>
