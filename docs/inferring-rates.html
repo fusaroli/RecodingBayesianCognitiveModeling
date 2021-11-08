@@ -24,7 +24,7 @@
 <meta name="author" content="Riccardo Fusaroli" />
 
 
-<meta name="date" content="2021-11-01" />
+<meta name="date" content="2021-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,6 @@ generated according to a binomial distribution with a number of trial n and a ra
 <span id="cb2-28"><a href="inferring-rates.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Then we fit the model and assess the estimates</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="inferring-rates.html#cb3-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(stan_file, <span class="at">cpp_options =</span> <span class="fu">list</span>(<span class="at">stan_threads =</span> <span class="cn">TRUE</span>), <span class="at">pedantic =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Compiling Stan program...</code></pre>
 <pre><code>## 
 -
 
@@ -244,15 +243,6 @@ generated according to a binomial distribution with a number of trial n and a ra
 
 -
 
-\</code></pre>
-<pre><code>## Warning: The parameter theta has 2 priors.</code></pre>
-<pre><code>## 
-|
-
-/
-
--
-
 \
 
 |
@@ -344,20 +334,46 @@ generated according to a binomial distribution with a number of trial n and a ra
 \
 
 |
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
+
+-
+
+\
+
+|
+
+/
 
  </code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="inferring-rates.html#cb8-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
-<span id="cb8-2"><a href="inferring-rates.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb8-3"><a href="inferring-rates.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
-<span id="cb8-4"><a href="inferring-rates.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">2</span>,</span>
-<span id="cb8-5"><a href="inferring-rates.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parallel_chains =</span> <span class="dv">2</span>,</span>
-<span id="cb8-6"><a href="inferring-rates.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">threads_per_chain =</span> <span class="dv">2</span>,</span>
-<span id="cb8-7"><a href="inferring-rates.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_warmup =</span> <span class="dv">2000</span>,</span>
-<span id="cb8-8"><a href="inferring-rates.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_sampling =</span> <span class="dv">2000</span>,</span>
-<span id="cb8-9"><a href="inferring-rates.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">500</span>,</span>
-<span id="cb8-10"><a href="inferring-rates.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_treedepth =</span> <span class="dv">20</span>,</span>
-<span id="cb8-11"><a href="inferring-rates.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
-<span id="cb8-12"><a href="inferring-rates.html#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="inferring-rates.html#cb5-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
+<span id="cb5-2"><a href="inferring-rates.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
+<span id="cb5-3"><a href="inferring-rates.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb5-4"><a href="inferring-rates.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">2</span>,</span>
+<span id="cb5-5"><a href="inferring-rates.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parallel_chains =</span> <span class="dv">2</span>,</span>
+<span id="cb5-6"><a href="inferring-rates.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">threads_per_chain =</span> <span class="dv">2</span>,</span>
+<span id="cb5-7"><a href="inferring-rates.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_warmup =</span> <span class="dv">2000</span>,</span>
+<span id="cb5-8"><a href="inferring-rates.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter_sampling =</span> <span class="dv">2000</span>,</span>
+<span id="cb5-9"><a href="inferring-rates.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">500</span>,</span>
+<span id="cb5-10"><a href="inferring-rates.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_treedepth =</span> <span class="dv">20</span>,</span>
+<span id="cb5-11"><a href="inferring-rates.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">adapt_delta =</span> <span class="fl">0.99</span>,</span>
+<span id="cb5-12"><a href="inferring-rates.html#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Running MCMC with 2 parallel chains, with 2 thread(s) per chain...
 ## 
 ## Chain 1 Iteration:    1 / 4000 [  0%]  (Warmup) 
@@ -385,11 +401,11 @@ generated according to a binomial distribution with a number of trial n and a ra
 ## 
 ## Both chains finished successfully.
 ## Mean chain execution time: 0.0 seconds.
-## Total execution time: 0.2 seconds.</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="inferring-rates.html#cb10-1" aria-hidden="true" tabindex="-1"></a>samples</span></code></pre></div>
-<pre><code>##  variable  mean median   sd  mad     q5   q95 rhat ess_bulk ess_tail
-##     lp__  -8.66  -8.37 0.74 0.30 -10.25 -8.15 1.00     1172     1084
-##     theta  0.59   0.60 0.13 0.14   0.37  0.81 1.00     1148      967</code></pre>
+## Total execution time: 0.9 seconds.</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="inferring-rates.html#cb7-1" aria-hidden="true" tabindex="-1"></a>samples</span></code></pre></div>
+<pre><code>##  variable  mean median   sd  mad    q5   q95 rhat ess_bulk ess_tail
+##     lp__  -8.19  -7.90 0.72 0.36 -9.63 -7.64 1.00     1019     1047
+##     theta  0.67   0.68 0.13 0.14  0.43  0.87 1.00      915     1018</code></pre>
 <p>As you know from the Bayesian workflow discussion [MISSING], there is a lot of model checking that we should do.
 We haven’t assessed our priors, nor the model posteriors against priors and against data, nor the quality of the model fitting process.</p>
 

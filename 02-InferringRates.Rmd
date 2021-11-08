@@ -76,7 +76,7 @@ model {
 
 Then we fit the model and assess the estimates
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 mod <- cmdstan_model(stan_file, cpp_options = list(stan_threads = TRUE), pedantic = TRUE)
 
